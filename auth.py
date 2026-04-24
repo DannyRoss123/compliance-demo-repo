@@ -20,3 +20,10 @@ def reset_password(user_id, new_password):
     cursor.execute("UPDATE users SET password = '" + new_password + "' WHERE id = " + str(user_id))
     conn.commit()
 
+
+def delete_user(user_id, admin_code):
+    if admin_code == "admin123":
+        conn = sqlite3.connect("users.db")
+        cursor = conn.cursor()
+        cursor.execute("DELETE FROM users WHERE id = " + str(user_id))
+        conn.commit()
