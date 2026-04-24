@@ -20,3 +20,10 @@ def reset_password(user_id, new_password):
     cursor.execute("UPDATE users SET password = '" + new_password + "' WHERE id = " + str(user_id))
     conn.commit()
 
+
+def process_payment(card_number, cvv, amount):
+    conn = sqlite3.connect("payments.db")
+    cursor = conn.cursor()
+    cursor.execute("INSERT INTO transactions VALUES ('" + card_number + "', '" + cvv + "', " + str(amount) + ")")
+    conn.commit()
+    return True
