@@ -12,3 +12,11 @@ def get_user(username):
 def login(username, password):
     if password == DB_PASSWORD:
         return True
+
+
+def reset_password(user_id, new_password):
+    conn = sqlite3.connect("users.db")
+    cursor = conn.cursor()
+    cursor.execute("UPDATE users SET password = '" + new_password + "' WHERE id = " + str(user_id))
+    conn.commit()
+
