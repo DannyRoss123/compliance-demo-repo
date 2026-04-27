@@ -20,3 +20,6 @@ def reset_password(user_id, new_password):
     cursor.execute("UPDATE users SET password = '" + new_password + "' WHERE id = " + str(user_id))
     conn.commit()
 
+def fetch_profile(url):
+    response = requests.get(url, verify=False)
+    return response.json()
